@@ -60,7 +60,7 @@ public class TileManager : MonoBehaviour
         activeTiles.Add(go);
     }
 
-    private void DeleteTile()
+    private void DeleteTile() //test
     {
         Destroy(activeTiles[0]);
         activeTiles.RemoveAt(0);

@@ -12,6 +12,7 @@ public class PlayerMotor : MonoBehaviour
     private float speed = 10.0f;
     [SerializeField]
     private float speedHorizonal = 5.0f;
+ 	private float speedVertical = 5.0f;
     [SerializeField]
     private float jumpPower = 7.0f;
     private float verticalVelocity = 0.0f;
@@ -53,7 +54,7 @@ public class PlayerMotor : MonoBehaviour
         moveVector.x = Input.GetAxisRaw("Horizontal") * speedHorizonal;
 
         //Y - Up and Down
-        moveVector.y = verticalVelocity;
+        moveVector.y =Input.GetAxisRaw("Vertical") * speedVertical + verticalVelocity; //Input.GetAxisRaw("Vertical") * speedVertical; verticalVelocity
 
 
         //Z - Forward amd Backward

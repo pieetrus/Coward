@@ -71,11 +71,13 @@ public class PlayerMotor : MonoBehaviour
         speed = 5 + modifier;
     }
 
-    //It is called every time our capsule hits something
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    public void OnCollisionEnter(Collision collision)
     {
-        if (hit.point.z > transform.position.z + controller.radius)
+        //When hit obcject with tag Obstacle then die
+        if (collision.collider.CompareTag("Obstacle"))
+        {
             Death();
+        }
     }
 
 

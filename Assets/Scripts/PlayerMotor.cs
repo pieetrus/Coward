@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
+    [SerializeField]
+    private float LANE_DISTANCE = 3.0f;
 
     private CharacterController controller;
     private Vector3 moveVector;
@@ -17,6 +19,7 @@ public class PlayerMotor : MonoBehaviour
     private float verticalVelocity = 0.0f;
     private float gravity = 12.0f;
     private float animationDuration = 3.0f; //COPY THIS VALUE FROM CAMERA MOTOR SCRIPT
+    private int desiredLane = 1; //0 = Left, 1 = Middle, 2 = Right
 
     private bool isDead = false;
 
@@ -50,17 +53,43 @@ public class PlayerMotor : MonoBehaviour
         }
 
         //X - Left and Right
-        moveVector.x = Input.GetAxisRaw("Horizontal") * speedHorizonal;
+        //moveVector.x = Input.GetAxisRaw("Horizontal") * speedHorizonal;
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            MoveLane(false);
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            MoveLane(true);
+
+        //Calculate where we should be in future
+        Vector3 targetPosition = transform.position.z * Vector3.forward;
+        if (desiredLane == 0)
+        {
+            targetPosition += Vector3.left * LANE_DISTANCE;
+        }
+        else if (desiredLane == 2)
+        {
+            targetPosition += Vector3.right * LANE_DISTANCE;
+        }
+
+        //Lets calculate our move delta
+        moveVector.x = (targetPosition - transform.position).normalized.x * speed;
 
         //Y - Up and Down
         moveVector.y = verticalVelocity; 
 
-
-        //Z - Forward amd Backward
+        //Z - Forward and Backward
         moveVector.z = speed;
 
         controller.Move(moveVector * Time.deltaTime);
+
     }
+
+    private void MoveLane(bool goingRight)
+    {
+        desiredLane += (goingRight) ? 1 : -1;
+        desiredLane = Mathf.Clamp(desiredLane, 0, 2);
+    }
+
 
     /// <summary>
     /// Used in Score Script

@@ -16,6 +16,8 @@ public class Score : MonoBehaviour
 
     private bool isDead = false;
 
+    public DeathMenu deathMenu;
+
     void Update()
     {
         if (isDead)
@@ -46,5 +48,6 @@ public class Score : MonoBehaviour
     public void OnDeath()
     {
         isDead = true;
+        deathMenu.ToggleEndMenu(score);
     }
 }

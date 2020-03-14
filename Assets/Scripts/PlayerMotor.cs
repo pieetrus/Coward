@@ -12,12 +12,12 @@ public class PlayerMotor : MonoBehaviour
     private float speed = 10.0f;
     [SerializeField]
     private float speedHorizonal = 5.0f;
- 	private float speedVertical = 5.0f;
     [SerializeField]
     private float jumpPower = 7.0f;
     private float verticalVelocity = 0.0f;
     private float gravity = 12.0f;
     private float animationDuration = 3.0f; //COPY THIS VALUE FROM CAMERA MOTOR SCRIPT
+    private float startTime;
 
     private bool isDead = false;
 
@@ -25,6 +25,7 @@ public class PlayerMotor : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        startTime = Time.time;
     }
 
     void Update()
@@ -33,7 +34,7 @@ public class PlayerMotor : MonoBehaviour
             return;
 
         //start animation
-        if(Time.time < animationDuration)
+        if(Time.time - startTime < animationDuration)
         {
             controller.Move(Vector3.forward * speed * Time.deltaTime);
             return;
@@ -54,7 +55,7 @@ public class PlayerMotor : MonoBehaviour
         moveVector.x = Input.GetAxisRaw("Horizontal") * speedHorizonal;
 
         //Y - Up and Down
-        moveVector.y =Input.GetAxisRaw("Vertical") * speedVertical + verticalVelocity; //Input.GetAxisRaw("Vertical") * speedVertical; verticalVelocity
+        moveVector.y = verticalVelocity; //Input.GetAxisRaw("Vertical") * speedVertical; verticalVelocity
 
 
         //Z - Forward amd Backward

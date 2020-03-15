@@ -16,9 +16,9 @@ public class TileManager : MonoBehaviour
     private Transform playerTransform;
 
     private float spawnZ = -5.0f; //where exactly on Z we want to spawn object (X == Y == 0)
-    private float tileLenght = 10.0f;
-    private float safeZone = 20.0f;
-    private int amnTilesOnScreen = 10;
+    private static float tileLenght = 10.0f;
+    private static float safeZone = 20.0f;
+    private static int amnTilesOnScreen = 10;
     private int lastPrefabIndex = 0;
 
     private List<GameObject> activeTiles;

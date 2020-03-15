@@ -6,11 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class DeathMenu : MonoBehaviour
 {
-    public Text scoreText;
+    [SerializeField]
+    private Text scoreText = null;
+    [SerializeField]
     public Image backgroundImg;
 
     private bool isShowned = false;
-    private float transition = 0.0f;
+    private float transitionEndMenu = -1.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,12 +24,19 @@ public class DeathMenu : MonoBehaviour
     {
         if (!isShowned)
             return;
-        transition += Time.deltaTime;
-        backgroundImg.color = Color.Lerp(new Color(0, 0, 0, 0), Color.black, transition);
+        transitionEndMenu += Time.deltaTime;
+        backgroundImg.color = Color.Lerp(new Color(0, 0, 0, 0), Color.black, transitionEndMenu);
     }
 
-    public void ToggleEndMenu(float score)
+    /// <summary>
+    /// Showing EndMenu
+    /// USED IN SCORE SCRIPT IN ONDEATH METHOD
+    /// </summary>
+    /// <param name="score"></param>
+    /// <returns></returns>
+    public IEnumerator ToggleEndMenu(float score)
     {
+        yield return new WaitForSeconds(2); // wait for 2 seconds
         gameObject.SetActive(true);
         scoreText.text = ((int)score).ToString();
         isShowned = true;

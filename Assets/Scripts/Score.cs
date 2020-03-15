@@ -51,6 +51,6 @@ public class Score : MonoBehaviour
         if(PlayerPrefs.GetFloat("Highscore") < score)
             PlayerPrefs.SetFloat("Highscore", score);
 
-        deathMenu.ToggleEndMenu(score);
+        StartCoroutine(deathMenu.ToggleEndMenu(score));
     }
 }

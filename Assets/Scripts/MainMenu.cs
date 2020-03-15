@@ -13,7 +13,6 @@ public class MainMenu : MonoBehaviour
         highscoreText.text = "Highscore : " + ((int)PlayerPrefs.GetFloat("Highscore")).ToString();
     }
 
-
     public void ToGame()
     {
         SceneManager.LoadScene("Game");

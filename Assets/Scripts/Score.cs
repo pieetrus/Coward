@@ -11,7 +11,7 @@ public class Score : MonoBehaviour
     private Text scoreText = null;
 
     private int difficultyLevel = 1;
-    private int maxDifficultyLevel = 10;
+    private static int maxDifficultyLevel = 10;
     private int scoreToNextLevel = 10;
 
     private bool isDead = false;

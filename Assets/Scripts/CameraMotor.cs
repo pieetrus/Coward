@@ -15,10 +15,10 @@ public class CameraMotor : MonoBehaviour
 
     [SerializeField]
     [Range(0.01f, 1.0f)]
-    private float smoothFactor = 0.5f;
+    private static float smoothFactor = 0.5f;
 
     private float transition = 0.0f;
-    private float animationDuration = 3.0f; //IF YOU CHANGE THAT VALUE CHANGE IT ALSO IN PLAYERMOTOR SCRIPT
+    private static float animationDuration = 3.0f; //IF YOU CHANGE THAT VALUE CHANGE IT ALSO IN PLAYERMOTOR SCRIPT
 
     private Vector3 animationOffset = new Vector3(0, 5, 5);
 

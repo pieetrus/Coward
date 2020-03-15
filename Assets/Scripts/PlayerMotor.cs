@@ -21,6 +21,7 @@ public class PlayerMotor : MonoBehaviour
     private float verticalVelocity = 0.0f;
     private static float gravity = 12.0f;
     private static float animationDuration = 3.0f; //COPY THIS VALUE FROM CAMERA MOTOR SCRIPT
+    private float startTime;
     private int desiredLane = 1; //0 = Left, 1 = Middle, 2 = Right
 
     private bool isDead = false;
@@ -32,6 +33,7 @@ public class PlayerMotor : MonoBehaviour
         playerAnim = GetComponent<Animator>();
 
         speed = startSpeed;
+        startTime = Time.time;
     }
 
     void Update()
@@ -54,7 +56,7 @@ public class PlayerMotor : MonoBehaviour
     private void Movement()
     {
         //start animation
-        if (Time.time < animationDuration)
+        if (Time.time - startTime < animationDuration)
         {
             controller.Move(Vector3.forward * speed * Time.deltaTime);
             return;

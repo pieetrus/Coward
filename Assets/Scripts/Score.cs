@@ -11,10 +11,12 @@ public class Score : MonoBehaviour
     private Text scoreText = null;
 
     private int difficultyLevel = 1;
-    private static int maxDifficultyLevel = 10;
+    private int maxDifficultyLevel = 10;
     private int scoreToNextLevel = 10;
 
     private bool isDead = false;
+
+    public DeathMenu deathMenu;
 
     void Update()
     {
@@ -46,5 +48,9 @@ public class Score : MonoBehaviour
     public void OnDeath()
     {
         isDead = true;
+        if(PlayerPrefs.GetFloat("Highscore") < score)
+            PlayerPrefs.SetFloat("Highscore", score);
+
+        StartCoroutine(deathMenu.ToggleEndMenu(score));
     }
 }

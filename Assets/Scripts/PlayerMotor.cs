@@ -119,7 +119,7 @@ public class PlayerMotor : MonoBehaviour
     {
         isDead = true;
         GetComponent<Score>().OnDeath();
-        //OnDeathAnimation();
+        OnDeathAnimation();
     }
 
     private void ControllAnimation()
@@ -140,8 +140,7 @@ public class PlayerMotor : MonoBehaviour
 
     private void OnDeathAnimation()
     {
-        playerAnim.SetBool("walking", false);
-        playerAnim.SetBool("jumping", false);
+        //playerAnim.SetBool("jumping", false);
         playerAnim.SetBool("isDead", true);
     }
 

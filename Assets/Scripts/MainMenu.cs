@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI highscoreText;
+    private TextMeshProUGUI highscoreText = null;
     // Start is called before the first frame update
     void Start()
     {

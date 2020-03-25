@@ -1,14 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
     private float score = 0.0f;
     
     [SerializeField]
-    private Text scoreText = null;
+    private TextMeshProUGUI scoreText = null;
 
     private int difficultyLevel = 1;
     private int maxDifficultyLevel = 10;

@@ -1,15 +1,19 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class DeathMenu : MonoBehaviour
 {
     [SerializeField]
-    private Text scoreText = null;
+    private TextMeshProUGUI scoreText = null;
     [SerializeField]
     public Image backgroundImg;
+
+    [SerializeField]
+    public GameObject scoreTextOnGame = null; // score text which shows score during the game
+
 
     private bool isShowned = false;
     private float transitionEndMenu = -1.0f;
@@ -37,8 +41,9 @@ public class DeathMenu : MonoBehaviour
     public IEnumerator ToggleEndMenu(float score)
     {
         yield return new WaitForSeconds(2); // wait for 2 seconds
+        scoreTextOnGame.active = false;
         gameObject.SetActive(true);
-        scoreText.text = ((int)score).ToString();
+        scoreText.text = "Score: " + ((int)score).ToString();
         isShowned = true;
     }
     public void Restart()

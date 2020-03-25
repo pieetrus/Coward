@@ -10,7 +10,11 @@ public class PlayerMotor : MonoBehaviour
     [SerializeField]
     private float TURN_SPEED = 0.05f;
 
+
+
     private CharacterController controller;
+    [SerializeField]
+    private GameObject scoreContainer;
     [SerializeField]
     private Animator playerAnim;
     
@@ -73,6 +77,7 @@ public class PlayerMotor : MonoBehaviour
             controller.Move(Vector3.forward * speed * Time.deltaTime);
             return;
         }
+        scoreContainer.active = true;
 
         moveVector = Vector3.zero; //reset value
 

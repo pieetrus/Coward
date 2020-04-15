@@ -1,9 +1,8 @@
 fileFormatVersion: 2
-guid: 6fcda63baad2bac4b8eb553455281f62
-labels:
-- Mesh
-PrefabImporter:
+guid: bcffc692dd973df4cb7f1fcb613b3d05
+NativeFormatImporter:
   externalObjects: {}
+  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

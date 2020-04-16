@@ -7,7 +7,14 @@ public class PlayerMotor : MonoBehaviour
     [SerializeField]
     private static float LANE_DISTANCE = 3.0f;
 
+    [SerializeField]
+    private float TURN_SPEED = 0.05f;
+
+
+
     private CharacterController controller;
+    [SerializeField]
+    private GameObject scoreContainer;
     [SerializeField]
     private Animator playerAnim;
     
@@ -38,18 +45,27 @@ public class PlayerMotor : MonoBehaviour
 
     void Update()
     {
+        IsGrounded();
+
         if (isDead)
             return;
 
         Movement();
-        
+
         ControllAnimation();
 
     }
 
     private void MoveLane(bool goingRight)
     {
-        desiredLane += (goingRight) ? 1 : -1;
+        if (goingRight == true)
+        {
+            desiredLane += 1;
+        }
+        else
+        {
+            desiredLane += -1;
+        }
         desiredLane = Mathf.Clamp(desiredLane, 0, 2);
     }
 
@@ -61,22 +77,43 @@ public class PlayerMotor : MonoBehaviour
             controller.Move(Vector3.forward * speed * Time.deltaTime);
             return;
         }
+        scoreContainer.active = true;
 
         moveVector = Vector3.zero; //reset value
 
         //Y - Jumping
-        if (controller.isGrounded)
+        if (IsGrounded())
         {
-            verticalVelocity = Input.GetAxisRaw("Jump") * jumpPower;
+            verticalVelocity = -0.1f;
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                verticalVelocity = jumpPower;
+                playerAnim.SetBool("jumping", true);
+            }
         }
         else
-            verticalVelocity -= gravity * Time.deltaTime;
+        {
+            playerAnim.SetBool("jumping", false);
+
+            verticalVelocity -= (gravity * Time.deltaTime);
+
+            //Fast Falling mechanic
+            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+            {
+                verticalVelocity = -jumpPower / 2;
+            }
+        }
 
         //X - Left and Right
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+        {
             MoveLane(false);
+        }
+
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+        {
             MoveLane(true);
+        }
 
         //Calculate where we should be in future
         Vector3 targetPosition = transform.position.z * Vector3.forward;
@@ -95,6 +132,14 @@ public class PlayerMotor : MonoBehaviour
         moveVector.z = speed;
 
         controller.Move(moveVector * Time.deltaTime);
+
+        // Rotate player to where he is going
+        Vector3 direction = controller.velocity;
+        direction.y = 0;
+        transform.forward = Vector3.Lerp(transform.forward, direction, TURN_SPEED);
+
+
+
     }
 
 
@@ -124,26 +169,44 @@ public class PlayerMotor : MonoBehaviour
 
     private void ControllAnimation()
     {
-        playerAnim.SetBool("walking", true);
-        if (verticalVelocity > 1)
-        {
-            playerAnim.SetBool("jumping", true);
-            playerAnim.SetBool("walking", false);
+        playerAnim.SetBool("grounded", IsGrounded());
 
-        }
-        else if (verticalVelocity <= 0)
-        {
-            playerAnim.SetBool("jumping", false);
-            playerAnim.SetBool("walking", true);
-        }
+        //playerAnim.SetBool("walking", true);
+        //if (verticalVelocity > 1)
+        //{
+        //    playerAnim.SetBool("jumping", true);
+        //    playerAnim.SetBool("walking", false);
+
+        //}
+        //else if (verticalVelocity <= 0)
+        //{
+        //    playerAnim.SetBool("jumping", false);
+        //    playerAnim.SetBool("walking", true);
+        //}
     }
 
     private void OnDeathAnimation()
     {
-        playerAnim.SetBool("walking", false);
-        playerAnim.SetBool("jumping", false);
+        //playerAnim.SetBool("jumping", false);
         playerAnim.SetBool("isDead", true);
-
     }
+
+
+
+
+    private bool IsGrounded()
+    {
+        Ray groundRay = new Ray(
+            new Vector3(
+                controller.bounds.center.x,
+                (controller.bounds.center.y - controller.bounds.extents.y) + 0.2f,
+                controller.bounds.center.z),
+            Vector3.down);
+
+        Debug.DrawRay(groundRay.origin, groundRay.direction, Color.cyan, 20.0f);
+
+        return (Physics.Raycast(groundRay, 0.2f + 0.1f));
+    }
+
 
 }

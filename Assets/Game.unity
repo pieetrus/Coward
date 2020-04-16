@@ -778,7 +778,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.17491882, y: -0, z: -0, w: 0.98458284}
-  m_LocalPosition: {x: 0, y: 9.21, z: -12.63}
+  m_LocalPosition: {x: 0, y: 7.91, z: -9.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1570,9 +1570,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefabs:
   - {fileID: 5838095244308319238, guid: 62b847fed615e124dbd843b4232a65f0, type: 3}
-  - {fileID: 5925817779181109811, guid: f122321058b96254c97d3ace06f1810a, type: 3}
+  - {fileID: 3988118511590226366, guid: 077c6837bbb4f1241ba82ddbe01cbfe3, type: 3}
   - {fileID: 3537091771178123762, guid: d16576121fa04004aa8fb6c8a6c27067, type: 3}
   - {fileID: 1770431834168002142, guid: 39042782067b54845a095e325466a84d, type: 3}
+  - {fileID: 6783907270446117065, guid: 8c1381881a7d53f43a58df2145c782a3, type: 3}
 --- !u!4 &1634467497
 Transform:
   m_ObjectHideFlags: 0

@@ -10,11 +10,11 @@ public class SettingManager : MonoBehaviour
 
     private Transform playerTransform;
 
-    private float spawnZ = -20f; //where exactly on Z we want to spawn object (X == Y == 0)
-    private float spawnX = 9f;
-    private static float tileLenght = 10.0f;
-    private static float safeZone = 20.0f;
-    private static int amnTilesOnScreen = 10;
+    private float spawnZ = -10f; //where exactly on Z we want to spawn object (X == Y == 0)
+    private float spawnX = 11.5f;
+    private static float tileLenght = 15.0f;
+    private static float safeZone = 15.0f;
+    private static int amnTilesOnScreen = 7;
     private int lastPrefabIndex = 0;
 
     private List<GameObject> activeTiles;
@@ -25,10 +25,9 @@ public class SettingManager : MonoBehaviour
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         for (int i = 0; i < amnTilesOnScreen; i++)
         {
-            if (i < 5)
-                SpawnTile(0);
-            else
-                SpawnTile();
+            SpawnTile(-1, 1);
+            SpawnTile(-1, -1);
+            
         }
 
     }
@@ -37,23 +36,32 @@ public class SettingManager : MonoBehaviour
     {
         if (playerTransform.position.z - safeZone > (spawnZ - amnTilesOnScreen * tileLenght))
         {
-            SpawnTile();
+            SpawnTile(-1,1);
+            SpawnTile(-1, -1);
+            DeleteTile();
             DeleteTile();
         }
     }
 
-    private void SpawnTile(int prefabIndex = -1)
+    private void SpawnTile(int prefabIndex = -1, int pos = 0)
     {
-        GameObject go;
-        if (prefabIndex == -1)
-            go = Instantiate(tilePrefabs[RandomPrefabIndex()]) as GameObject;
-        else
-            go = Instantiate(tilePrefabs[prefabIndex]) as GameObject;
 
-        go.transform.SetParent(transform); //puts object inside of this method 
-        go.transform.position = Vector3.forward * spawnZ + Vector3.right * spawnX;
-        spawnZ += tileLenght;
-        activeTiles.Add(go);
+            GameObject go;
+            if (prefabIndex == -1)
+                go = Instantiate(tilePrefabs[RandomPrefabIndex()]) as GameObject;
+            else
+                go = Instantiate(tilePrefabs[prefabIndex]) as GameObject;
+
+            go.transform.SetParent(transform); //puts object inside of this method 
+            go.transform.position = Vector3.forward * spawnZ + Vector3.right * pos * spawnX;
+
+            activeTiles.Add(go);
+        if (pos == -1)
+        {
+            spawnZ += tileLenght;
+        }
+
+
     }
 
     private void DeleteTile() //test

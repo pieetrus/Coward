@@ -208,5 +208,13 @@ public class PlayerMotor : MonoBehaviour
         return (Physics.Raycast(groundRay, 0.2f + 0.1f));
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Coin")
+        {
+            Destroy(other.gameObject, 0.5f);
+        }
+    }
+
 
 }

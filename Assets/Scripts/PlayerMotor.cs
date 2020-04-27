@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
@@ -157,6 +155,7 @@ public class PlayerMotor : MonoBehaviour
         //When hit obcject with tag Obstacle then die
         if (collision.collider.CompareTag("Obstacle"))
             Death();
+
     }
 
 
@@ -210,7 +209,7 @@ public class PlayerMotor : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Coin")
+        if (other.gameObject.CompareTag("Coin"))
         {
             Destroy(other.gameObject, 0.5f);
         }

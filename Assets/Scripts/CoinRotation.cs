@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CoinRotation : MonoBehaviour
 {
@@ -20,11 +18,11 @@ public class CoinRotation : MonoBehaviour
         if (goUp == true)
         {
             transform.Rotate(0, 0, 0);
-            transform.Translate(0, 0.04f, 0);
+            transform.Translate(0, 0.8f, 0);
         }
         else
         {
-            transform.Rotate(1f, 0, 0);
+            transform.Rotate(0, 2f, 0);
         }
     }
 

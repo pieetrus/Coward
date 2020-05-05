@@ -32,6 +32,7 @@ public class CoinRotation : MonoBehaviour
         {
             goUp = true;
             myAudio.PlayOneShot(coinCollection, 1);
+           // Destroy(gameObject);
         }
     }
 }

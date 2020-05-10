@@ -1,5 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.CodeDom.Compiler;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
 using UnityEngine;
 
 public class SettingManager : MonoBehaviour
@@ -16,6 +20,9 @@ public class SettingManager : MonoBehaviour
     private static float safeZone = 15.0f;
     private static int amnTilesOnScreen = 7;
     private int lastPrefabIndex = 0;
+    private int settings_amount = 2;
+    private int actual_setting = 0;
+    private float setting_time = 30.0f;
 
     private List<GameObject> activeTiles;
 
@@ -23,37 +30,39 @@ public class SettingManager : MonoBehaviour
     {
         activeTiles = new List<GameObject>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        
         for (int i = 0; i < amnTilesOnScreen; i++)
         {
-            SpawnTile(-1, 1);
-            SpawnTile(-1, -1);
-            
+            SpawnTile(1);
+            SpawnTile(-1);
         }
-
+        InvokeRepeating("ChangeSetting", setting_time, setting_time);
     }
 
     void Update()
     {
         if (playerTransform.position.z - safeZone > (spawnZ - amnTilesOnScreen * tileLenght))
         {
-            SpawnTile(-1,1);
-            SpawnTile(-1, -1);
+            SpawnTile(1);
+            SpawnTile(-1);
             DeleteTile();
             DeleteTile();
         }
+        
     }
 
-    private void SpawnTile(int prefabIndex = -1, int pos = 0)
+    private void SpawnTile(int pos = 0)
     {
-
+            
             GameObject go;
-            if (prefabIndex == -1)
-                go = Instantiate(tilePrefabs[RandomPrefabIndex()]) as GameObject;
-            else
-                go = Instantiate(tilePrefabs[prefabIndex]) as GameObject;
+            
+            go = Instantiate(tilePrefabs[PrefabIndex()]) as GameObject;
+            
 
             go.transform.SetParent(transform); //puts object inside of this method 
             go.transform.position = Vector3.forward * spawnZ + Vector3.right * pos * spawnX;
+            go.transform.Rotate(0, UnityEngine.Random.Range(0, 4) * 90, 0);
+            
 
             activeTiles.Add(go);
         if (pos == -1)
@@ -79,12 +88,26 @@ public class SettingManager : MonoBehaviour
 
         while (randomIndex == lastPrefabIndex)
         {
-            randomIndex = Random.Range(0, tilePrefabs.Length);
+            randomIndex = UnityEngine.Random.Range(0, tilePrefabs.Length);
         }
 
         lastPrefabIndex = randomIndex;
         return randomIndex;
 
+    }
+
+    void ChangeSetting()
+    {
+        if(actual_setting+1 == settings_amount)
+        {
+            actual_setting = 0;
+        }
+        else { actual_setting++; }
+    }
+
+    private int PrefabIndex()
+    {
+        return UnityEngine.Random.Range(0 + actual_setting * 10, 10 + actual_setting * 10);
     }
 
 }

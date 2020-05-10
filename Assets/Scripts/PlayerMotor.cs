@@ -161,6 +161,7 @@ public class PlayerMotor : MonoBehaviour
 
     private void Death()
     {
+        FindObjectOfType<AudioManager>().Play("PlayerDeath");
         isDead = true;
         GetComponent<Score>().OnDeath();
         OnDeathAnimation();

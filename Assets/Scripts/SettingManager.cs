@@ -34,6 +34,8 @@ public class SettingManager : MonoBehaviour
         for (int i = 0; i < amnTilesOnScreen; i++)
         {
             SpawnTile(1);
+            SpawnTile(2);
+            SpawnTile(-2);
             SpawnTile(-1);
         }
         InvokeRepeating("ChangeSetting", setting_time, setting_time);
@@ -44,7 +46,11 @@ public class SettingManager : MonoBehaviour
         if (playerTransform.position.z - safeZone > (spawnZ - amnTilesOnScreen * tileLenght))
         {
             SpawnTile(1);
+            SpawnTile(2);
+            SpawnTile(-2);
             SpawnTile(-1);
+            DeleteTile();
+            DeleteTile();
             DeleteTile();
             DeleteTile();
         }

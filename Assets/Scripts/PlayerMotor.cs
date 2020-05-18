@@ -85,12 +85,16 @@ public class PlayerMotor : MonoBehaviour
             verticalVelocity = -0.1f;
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
             {
+                FindObjectOfType<AudioManager>().Play("PlayerJump");
                 verticalVelocity = jumpPower;
                 playerAnim.SetBool("jumping", true);
+                
             }
         }
         else
         {
+            
+
             playerAnim.SetBool("jumping", false);
 
             verticalVelocity -= (gravity * Time.deltaTime);
@@ -106,11 +110,13 @@ public class PlayerMotor : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             MoveLane(false);
+            FindObjectOfType<AudioManager>().Play("PlayerTurn");
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             MoveLane(true);
+            FindObjectOfType<AudioManager>().Play("PlayerTurn");
         }
 
         //Calculate where we should be in future

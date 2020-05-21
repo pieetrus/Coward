@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class PlayerMotor : MonoBehaviour
     [SerializeField]
     private float TURN_SPEED = 0.05f;
 
-
+    [SerializeField]
+    private TextMeshProUGUI caneText = null;
 
     private CharacterController controller;
     [SerializeField]
@@ -28,6 +30,7 @@ public class PlayerMotor : MonoBehaviour
     private static float animationDuration = 3.0f; //COPY THIS VALUE FROM CAMERA MOTOR SCRIPT
     private float startTime;
     private int desiredLane = 1; //0 = Left, 1 = Middle, 2 = Right
+    private int canes = 0;
 
     private bool isDead = false;
 
@@ -219,6 +222,8 @@ public class PlayerMotor : MonoBehaviour
         if (other.gameObject.CompareTag("Coin"))
         {
             Destroy(other.gameObject, 0.5f);
+            canes++;
+            caneText.text = ((int)canes).ToString();
         }
     }
 

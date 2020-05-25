@@ -19,7 +19,7 @@ public class SettingManager : MonoBehaviour
     private float wayX = 11.5f;
     private static float tileLenght = 15.0f;
     private static float safeZone = 15.0f;
-    private static int amnTilesOnScreen = 7;
+    private static int amnTilesOnScreen = 6;
     private int lastPrefabIndex = 0;
     private int settings_amount = 2;
     private int actual_setting = 1;

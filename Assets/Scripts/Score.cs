@@ -8,9 +8,13 @@ public class Score : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI scoreText = null;
 
+    [SerializeField]
+    private TextMeshProUGUI canesText = null;
+
     private int difficultyLevel = 1;
     private int maxDifficultyLevel = 10;
     private int scoreToNextLevel = 10;
+    private int canes = 0;
 
     private bool isDead = false;
 
@@ -46,8 +50,10 @@ public class Score : MonoBehaviour
     public void OnDeath()
     {
         isDead = true;
-        if(PlayerPrefs.GetFloat("Highscore") < score)
+        canes = int.Parse(canesText.text);
+        if (PlayerPrefs.GetFloat("Highscore") < score)
             PlayerPrefs.SetFloat("Highscore", score);
+        PlayerPrefs.SetFloat("Canes", PlayerPrefs.GetFloat("Canes") + canes);
 
         StartCoroutine(deathMenu.ToggleEndMenu(score));
     }

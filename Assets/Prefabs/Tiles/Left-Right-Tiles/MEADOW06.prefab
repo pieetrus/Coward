@@ -9,8 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5062080990291397375}
+<<<<<<< HEAD
   - component: {fileID: 2534133566332848820}
   - component: {fileID: -324925469071503410}
+=======
+  - component: {fileID: 6876122876270901318}
+  - component: {fileID: 8415866847851180628}
+>>>>>>> 43f8ad3cf1ae6a2bdd3a8c1f508f023b26f29be7
   m_Layer: 0
   m_Name: MEADOW06
   m_TagString: Untagged
@@ -33,7 +38,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!82 &2534133566332848820
+=======
+--- !u!82 &6876122876270901318
+>>>>>>> 43f8ad3cf1ae6a2bdd3a8c1f508f023b26f29be7
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,18 +53,30 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 0dacd69339235fd49bf3b1c6438cd461,
     type: 2}
+<<<<<<< HEAD
   m_audioClip: {fileID: 8300000, guid: bf50d0d02da765e4e927b318893bc891, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
+=======
+  m_audioClip: {fileID: 8300000, guid: 769bf1c04dbadb544aba7bf27ff59535, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+>>>>>>> 43f8ad3cf1ae6a2bdd3a8c1f508f023b26f29be7
   Mute: 0
   Spatialize: 1
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
+<<<<<<< HEAD
   MaxDistance: 500
+=======
+  MaxDistance: 30
+>>>>>>> 43f8ad3cf1ae6a2bdd3a8c1f508f023b26f29be7
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -105,7 +126,11 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
+<<<<<<< HEAD
       value: 0
+=======
+      value: 0.725
+>>>>>>> 43f8ad3cf1ae6a2bdd3a8c1f508f023b26f29be7
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -130,7 +155,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+<<<<<<< HEAD
 --- !u!114 &-324925469071503410
+=======
+--- !u!114 &8415866847851180628
+>>>>>>> 43f8ad3cf1ae6a2bdd3a8c1f508f023b26f29be7
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,9 +171,15 @@ MonoBehaviour:
   m_Script: {fileID: 76981280, guid: eebd54e7d213be945a108906106ed4d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   m_Dynamic: 0
   m_panner_x: 0.41
   m_panner_y: 0.58
+=======
+  m_Dynamic: 1
+  m_panner_x: 0
+  m_panner_y: 0
+>>>>>>> 43f8ad3cf1ae6a2bdd3a8c1f508f023b26f29be7
   m_panner_z: 0
   m_FrontLeft: 0
   m_FrontRight: 0

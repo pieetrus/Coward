@@ -15,13 +15,14 @@ public class SettingManager : MonoBehaviour
     private Transform playerTransform;
 
     private float spawnZ = -10f; //where exactly on Z we want to spawn object (X == Y == 0)
-    private float spawnX = 11.5f;
+    private float spawnX = 15f;
+    private float wayX = 11.5f;
     private static float tileLenght = 15.0f;
     private static float safeZone = 15.0f;
     private static int amnTilesOnScreen = 7;
     private int lastPrefabIndex = 0;
     private int settings_amount = 2;
-    private int actual_setting = 0;
+    private int actual_setting = 1;
     private float setting_time = 30.0f;
 
     private List<GameObject> activeTiles;
@@ -66,7 +67,15 @@ public class SettingManager : MonoBehaviour
             
 
             go.transform.SetParent(transform); //puts object inside of this method 
-            go.transform.position = Vector3.forward * spawnZ + Vector3.right * pos * spawnX;
+            if (pos < 0)
+            {
+                go.transform.position = Vector3.forward * spawnZ + Vector3.right * (-wayX + (pos+1) * spawnX);
+            }
+            else
+            {
+                go.transform.position = Vector3.forward * spawnZ + Vector3.right * (wayX + (pos-1) * spawnX);
+            }
+            
             go.transform.Rotate(0, UnityEngine.Random.Range(0, 4) * 90, 0);
             
 

@@ -21,10 +21,10 @@ public class PlayerMotor : MonoBehaviour
     public float startSpeed = 10.0f;
     private float speed;
     [SerializeField]
-    private float jumpPower = 7.0f;
+    private float jumpPower = 1.7f;
     [SerializeField]
     private float verticalVelocity = 0.0f;
-    private static float gravity = 12.0f;
+    private static float gravity = 20.0f;
     private static float animationDuration = 3.0f; //COPY THIS VALUE FROM CAMERA MOTOR SCRIPT
     private float startTime;
     private int desiredLane = 1; //0 = Left, 1 = Middle, 2 = Right

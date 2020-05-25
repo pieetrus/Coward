@@ -40,7 +40,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4139643521730208532}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 76981280, guid: eebd54e7d213be945a108906106ed4d3, type: 3}
   m_Name: 
@@ -73,7 +73,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 0dacd69339235fd49bf3b1c6438cd461,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: d7a6bfef16027f34180b8af5e30dae07, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -83,12 +83,12 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0.25
-  MaxDistance: 2
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
-  BypassReverbZones: 1
+  BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -133,7 +133,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.32777777
+      value: 0.51111114
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -148,7 +148,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0

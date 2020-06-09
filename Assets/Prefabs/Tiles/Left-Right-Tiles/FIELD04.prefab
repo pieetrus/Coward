@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4126276562312569943}
-  - component: {fileID: 3453642499212666474}
-  - component: {fileID: 3422964009451767188}
+  - component: {fileID: -486982726363351430}
+  - component: {fileID: 5713504484857235285}
   m_Layer: 0
   m_Name: FIELD04
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &3453642499212666474
+--- !u!82 &-486982726363351430
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,21 +44,21 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 0dacd69339235fd49bf3b1c6438cd461,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 4f1fd329b0c06d745bd7f43f4fb9965a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c20159f6275006d499296d3a9aa87091, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 1
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 0
-  BypassEffects: 1
+  BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
@@ -105,7 +105,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.03888889
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -130,7 +130,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3422964009451767188
+--- !u!114 &5713504484857235285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

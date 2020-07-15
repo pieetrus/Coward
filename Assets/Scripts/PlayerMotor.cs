@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
@@ -10,7 +9,8 @@ public class PlayerMotor : MonoBehaviour
     [SerializeField]
     private float TURN_SPEED = 0.05f;
 
-
+    [SerializeField]
+    private TextMeshProUGUI caneText = null;
 
     private CharacterController controller;
     [SerializeField]
@@ -23,13 +23,14 @@ public class PlayerMotor : MonoBehaviour
     public float startSpeed = 10.0f;
     private float speed;
     [SerializeField]
-    private float jumpPower = 7.0f;
+    private float jumpPower = 1.7f;
     [SerializeField]
     private float verticalVelocity = 0.0f;
-    private static float gravity = 12.0f;
+    private static float gravity = 20.0f;
     private static float animationDuration = 3.0f; //COPY THIS VALUE FROM CAMERA MOTOR SCRIPT
     private float startTime;
     private int desiredLane = 1; //0 = Left, 1 = Middle, 2 = Right
+    private int canes = 0;
 
     private bool isDead = false;
 
@@ -87,12 +88,16 @@ public class PlayerMotor : MonoBehaviour
             verticalVelocity = -0.1f;
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
             {
+                FindObjectOfType<AudioManager>().Play("PlayerJump");
                 verticalVelocity = jumpPower;
                 playerAnim.SetBool("jumping", true);
+                
             }
         }
         else
         {
+            
+
             playerAnim.SetBool("jumping", false);
 
             verticalVelocity -= (gravity * Time.deltaTime);
@@ -108,11 +113,13 @@ public class PlayerMotor : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             MoveLane(false);
+            FindObjectOfType<AudioManager>().Play("PlayerTurn");
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             MoveLane(true);
+            FindObjectOfType<AudioManager>().Play("PlayerTurn");
         }
 
         //Calculate where we should be in future
@@ -157,11 +164,13 @@ public class PlayerMotor : MonoBehaviour
         //When hit obcject with tag Obstacle then die
         if (collision.collider.CompareTag("Obstacle"))
             Death();
+
     }
 
 
     private void Death()
     {
+        FindObjectOfType<AudioManager>().Play("PlayerDeath");
         isDead = true;
         GetComponent<Score>().OnDeath();
         OnDeathAnimation();
@@ -206,6 +215,16 @@ public class PlayerMotor : MonoBehaviour
         Debug.DrawRay(groundRay.origin, groundRay.direction, Color.cyan, 20.0f);
 
         return (Physics.Raycast(groundRay, 0.2f + 0.1f));
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            Destroy(other.gameObject, 0.5f);
+            canes++;
+            caneText.text = ((int)canes).ToString();
+        }
     }
 
 

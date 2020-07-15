@@ -20,7 +20,7 @@ public class CameraMotor : MonoBehaviour
     private float transition = 0.0f;
     private static float animationDuration = 3.0f; //IF YOU CHANGE THAT VALUE CHANGE IT ALSO IN PLAYERMOTOR SCRIPT
 
-    private Vector3 animationOffset = new Vector3(0, 5, 5);
+    private Vector3 animationOffset = new Vector3(0, 1, 1);
 
 
 
